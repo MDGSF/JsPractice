@@ -1,0 +1,9 @@
+
+{"DeviceID":"1e570758d485a8d1","EventTime":"2019-09-15T23:04:50.126+08:00","ServerTime":"2019-09-15T23:04:50.652732537+08:00","rawmsg":{"type":"status","id":"09b81280-bc45-4cb6-8248-9a802507f6ed","category":"vehicle","data":[{"diff_km":0.1349999999999909,"gps":{"altitude":-20.7,"latitude":13.597615,"longitude":100.61121833333333},"km":243.242,"speed":48.6125,"time":1568559890126}],"time":1568559890126}}
+
+{"DeviceID":"fa4913009f987452","EventTime":"2019-09-22T22:02:34.898+08:00","ServerTime":"2019-09-22T22:02:32.824132269+08:00","rawmsg":{"type":"status","id":"4dcd3797-6537-4dd3-908b-f42e59a6c9a1", "category":"vehicle","data":[{"gps":{"altitude":39.1,"latitude":32.929089999999995,"longitude":118.77814500000001},"speed":0,"time":1569160954898}],"time":1569160954898}}
+
+aaa
+
+{"DeviceID":"629ea4bd6e070b2b","EventTime":"2019-09-22T22:02:32.71+08:00","ServerTime":"2019-09-22T22:02:32.9009906+08:00","rawmsg":{"type":"event","source":"adas","data":[{"headway":1,"hmw": "t12","speed":66,"threshold":1,"time":1569160948034},{"duration":0.669,"hmw":"t21","min_headway":1,"speed":66,"time":1569160948703}],"time":1569160952710}}
+

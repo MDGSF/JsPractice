@@ -3,8 +3,8 @@ const utils = require('../lib/common/utils');
 
 const DefaultObj = {
   async root(ctx, next) {
-    log.info('root');
-    ctx.body = 'hello';
+    log.info('root request');
+    ctx.body = 'hello koajs';
   },
 };
 

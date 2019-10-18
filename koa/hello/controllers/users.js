@@ -25,6 +25,11 @@ const Users = {
     log.info('delete one user');
     ctx.body = 'delete one user success';
   },
+
+  async deleteUserV2(ctx, next) {
+    log.info('delete one user v2');
+    ctx.body = 'delete one user success v2';
+  },
 };
 
 module.exports = Users;

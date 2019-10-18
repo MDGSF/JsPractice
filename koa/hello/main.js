@@ -1,12 +1,14 @@
 const http = require('http');
 const Koa = require('koa');
 const koaRouter = require('koa-router');
-const koaLogger = require('koa-logger');
 const koaBody = require('koa-body');
 
+const requestLogger = require('./lib/middles/requestLogger');
+
 const log = require('./lib/common/logger');
-const defaultCtrl = require('./controllers/default');
 const config = require('./etc/config');
+const defaultCtrl = require('./controllers/default');
+const usersCtrl = require('./controllers/users');
 
 class App {
   constructor() {
@@ -15,16 +17,22 @@ class App {
 
     router.get('/', defaultCtrl.root);
 
+    router.post('/users', usersCtrl.root);
+    router.put('/users/:id', usersCtrl.root);
+    router.del('/users/:id', usersCtrl.root);
+    router.all('/users/:id', usersCtrl.root);
+
     this.app.use(async (ctx, next) => {
       try {
         await next();
       } catch (err) {
         ctx.status = 500;
-        log.error(err);
+        log.error(`catch err = ${err}`);
+        console.error(err);
       }
     });
 
-    this.app.use(koaLogger());
+    this.app.use(requestLogger());
     this.app.use(
       koaBody({
         jsonLimit: '1kb',

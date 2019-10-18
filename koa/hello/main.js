@@ -3,6 +3,7 @@ const Koa = require('koa');
 const koaRouter = require('koa-router');
 const koaBody = require('koa-body');
 
+const catchAllError = require('./lib/middles/catchAllError');
 const requestLogger = require('./lib/middles/requestLogger');
 
 const log = require('./lib/common/logger');
@@ -14,24 +15,24 @@ class App {
   constructor() {
     this.app = new Koa();
     const router = new koaRouter();
-
     router.get('/', defaultCtrl.root);
 
-    router.post('/users', usersCtrl.root);
-    router.put('/users/:id', usersCtrl.root);
-    router.del('/users/:id', usersCtrl.root);
-    router.all('/users/:id', usersCtrl.root);
+    const apiV1Router = new koaRouter();
+    const apiV2Router = new koaRouter();
 
-    this.app.use(async (ctx, next) => {
-      try {
-        await next();
-      } catch (err) {
-        ctx.status = 500;
-        log.error(`catch err = ${err}`);
-        console.error(err);
-      }
+    apiV1Router.post('/users', usersCtrl.createUser);
+    apiV1Router.get('/users', usersCtrl.getUserList);
+    apiV1Router.get('/users/:id', usersCtrl.getOneUserInfo);
+    apiV1Router.put('/users/:id', usersCtrl.updateUser);
+    apiV1Router.del('/users/:id', usersCtrl.deleteUser);
+
+    const apiRouter = new koaRouter({
+      prefix: '/api',
     });
+    apiRouter.use('/v1', apiV1Router.routes(), apiV1Router.allowedMethods());
+    apiRouter.use('/v2', apiV2Router.routes(), apiV2Router.allowedMethods());
 
+    this.app.use(catchAllError());
     this.app.use(requestLogger());
     this.app.use(
       koaBody({
@@ -40,6 +41,8 @@ class App {
     );
     this.app.use(router.routes());
     this.app.use(router.allowedMethods());
+    this.app.use(apiRouter.routes());
+    this.app.use(apiRouter.allowedMethods());
   }
 
   callback() {

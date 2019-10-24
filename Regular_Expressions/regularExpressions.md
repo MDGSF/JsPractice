@@ -76,6 +76,19 @@ const re = new RegExp("ab+c"); // 运行时创建
 
 ### `(?:x)`
 
+### `x|y`
+
+匹配 "x" 或者 "y"。
+
+例如，`/green|red/` 匹配 "green apple" 中的 "apple" 和 "red apple" 中的 "red"。
+
+### `{n}`
+
+n 是一个正整数，匹配了前面一个字符刚好出现 n 次。
+
+例如，`/a{2}/` 不会匹配 "candy" 中的 "a"，但是会匹配 "caandy" 中的所有的 "a"，
+以及 "caaandy" 中的前两个 "a"。
+
 ## 参考链接
 
 - https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions

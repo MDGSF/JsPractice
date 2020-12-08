@@ -1,0 +1,17 @@
+{
+  "name": "function_factory",
+  "version": "1.0.0",
+  "description": "Node.js Addons Example #5",
+  "main": "addon.js",
+  "private": true,
+  "scripts": {
+    "test": "node addon.js"
+  },
+  "author": "HuangJian",
+  "license": "MIT",
+  "gypfile": true,
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "node-addon-api": "^3.0.2"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "C_Cpp.default.includePath": [
+    "/home/huangjian/.nvm/versions/node/v12.19.0/include/node",
+    "node_modules/node-addon-api"
+  ]
+}
